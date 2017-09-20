@@ -31,7 +31,7 @@ class FreelancersController extends AppController
 
         $message = new Message();
         $message->user = Yii::$app->user->identity->username;
-//        Debug(Yii::$app->request->get('id'));
+
         $message->parent_id = Yii::$app->request->get('id');
         if ($message->load(Yii::$app->request->post()) && $message->save()) {
             if(Yii::$app->getRequest()->getIsPjax()) {  //очистка формы после Pjax
@@ -56,8 +56,7 @@ class FreelancersController extends AppController
     }
     
     public function actionProfile($id){
-//              Debug(Yii::$app
-//              );
+
         if(Yii::$app->user->identity->id == $id) {
 
 
@@ -69,9 +68,7 @@ class FreelancersController extends AppController
             }
 
             $freelancer = Freelancers::findOne($id);
-//        if(empty($freelancer )){
-//            throw new \yii\web\HttpException(404, 'Такой страницы не существует');
-//        }
+
             $this->layout = 'profile';
             return $this->render('profile', [
                     'freelancer' => $freelancer,
@@ -92,7 +89,7 @@ class FreelancersController extends AppController
         $user = User::findOne(['id' => Yii::$app->user->identity->id]);
         $model->id = $user->id;
         $model->login = $user->username;
-//Debug($user) ;
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['profile', 'id' => Yii::$app->user->identity->id]);
         } else {
@@ -113,6 +110,36 @@ class FreelancersController extends AppController
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+
+
+
+
+    public function actionMessage($parent_id){
+
+
+        if(Yii::$app->user->identity->id == $parent_id) {
+            $z = Yii::$app->user->identity->id;
+            Yii::$app->db->createCommand("UPDATE message SET status=1 WHERE parent_id = $z")
+                ->execute();
+
+            $messages = Message::find()->where(['parent_id' => Yii::$app->user->identity->id])->all();
+//            Debug($messages);
+            $this->layout = 'message';
+            return $this->render('message', [
+
+                    'messages' => $messages,
+                ]
+            );
+        }
+        else{
+            throw new \yii\web\HttpException(404, 'Такой страницы не существует');
+        }
+
+    }
+
+
+
 
 
 

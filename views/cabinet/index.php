@@ -1,3 +1,8 @@
+<?php
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+?>
+
 <div id="wb_content">
     <div id="content">
         <div class="row">
@@ -38,11 +43,18 @@
             <div class="col-2">
                 <div id="wb_CssMenu1">
                     <ul>
-                        <li class="firstmain"><a href="<?= \yii\helpers\Url::to(['freelancers/profile', 'id' => $freelancer->id]) ?>" target="_self">&#1055;&#1088;&#1086;&#1092;&#1080;&#1083;&#1100;</a>
+                        <li class="firstmain"><a href="<?= \yii\helpers\Url::to(['freelancers/profile', 'id' => $freelancer->id]) ?>" target="_self">Профиль</a>
                         </li>
-                        <li><a href="#" target="_self">&#1057;&#1086;&#1086;&#1073;&#1097;&#1077;&#1085;&#1080;&#1103;</a>
+                        <li><a href="<?= \yii\helpers\Url::to(['/message/'.$freelancer->id ]) ?> " target="_self" >Сообщения
+                                <?php
+                                if($messages > 0){
+                                   echo $messages;
+                                }
+
+                                ?></a>
+
                         </li>
-                        <li><a href="#" target="_self">&#1047;&#1072;&#1082;&#1072;&#1079;&#1099;</a>
+                        <li><a href="#" target="_self">Заказы</a>
                         </li>
                     </ul>
                 </div>

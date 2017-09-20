@@ -78,6 +78,7 @@ $config = [
                 'freelancers/<id:\d+>' => 'freelancers/view',
                 'cabinet/<id:\d+>' => 'cabinet/index',
                 'profile/<id:\d+>' => 'freelancers/profile',
+                'message/<parent_id:\d+>' => 'freelancers/message',
 
             ],
         ],

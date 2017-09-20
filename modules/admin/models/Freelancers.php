@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\models;
 
+
 use Yii;
 
 /**
@@ -52,4 +53,6 @@ class Freelancers extends \yii\db\ActiveRecord
             'status' => 'Status',
         ];
     }
+
+  
 }

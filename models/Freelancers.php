@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\Message;
 
 /**
  * This is the model class for table "Freelancers".
@@ -51,5 +52,10 @@ class Freelancers extends \yii\db\ActiveRecord
             'date' => 'Date',
             'status' => 'Status',
         ];
+    }
+
+
+    public function getMessage(){
+        return $this->hasMany(Message::className(), ['parent_id' => 'id']);
     }
 }

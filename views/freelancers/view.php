@@ -61,7 +61,7 @@ use yii\helpers\Html;
                 <?php \yii\widgets\Pjax::end() ?>
 
                 <div id="wb_Text8">
-                    <span id="wb_uid11">Портфолио</span>
+                    <span id="wb_uid11">Портфолио </span>
                 </div>
             </div>
             <div class="col-2">

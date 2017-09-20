@@ -46,7 +46,7 @@ use yii\helpers\Html;
                 </div>
                 <hr id="Line2">
                 <div id="wb_Text8">
-                    <span id="wb_uid5">Портфолио</span>
+                    <span id="wb_uid5"><?php Debug($freelancer->message); ?> Портфолио</span>
                 </div>
             </div>
             <div class="col-2">
