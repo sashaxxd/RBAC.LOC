@@ -29,6 +29,7 @@ use yii\helpers\Html;
 
                                 <?= $form->field($model, 'spec')?>
 
+
                                 <?= Html::submitButton('Изменить', ['class' => 'btn btn-profile']) ?>
                                 <?php ActiveForm::end()?>
                             </div>
