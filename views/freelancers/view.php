@@ -1,3 +1,7 @@
+<?php
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
+?>
 <div id="wb_content">
     <div id="content">
         <div class="row">
@@ -31,6 +35,31 @@
                     </div>
                 </div>
                 <hr id="Line2">
+                <?php \yii\widgets\Pjax::begin() ?>
+                <?php $form = ActiveForm::begin([   'id' => $widget_id.'-form',
+                    'method' => 'POST',
+                    'action' => '',
+                    'enableAjaxValidation' => false,
+                    'options' => [ 'autocomplete' => 'off', 'data-pjax' => true]
+                ])?>
+
+<!--                --><?//= $form->field($message, 'user')?>
+
+
+                <?= $form->field($message, 'message')->textarea(['rows' => 10, 'placeholder' => 'Ввведите сообщение'])?>
+
+
+
+
+
+                <?= Html::submitButton('Написать сообщение фрилансеру '.$freelancer->login, ['class' => 'btn btn-profile']) ?>
+                <?php ActiveForm::end()?>
+
+
+                    <span id="red_mes" style="color: red; font-size: 12px; font-weight: bold;"> <?= $res ?></span>
+
+                <?php \yii\widgets\Pjax::end() ?>
+
                 <div id="wb_Text8">
                     <span id="wb_uid11">Портфолио</span>
                 </div>

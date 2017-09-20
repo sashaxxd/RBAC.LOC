@@ -87,6 +87,8 @@ $config = [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
             'site/*',
+            'gii*',
+            'debug*',
 //            'admin/*',
             'rbac/*',
 //            'profile/<id:\d+>' => 'freelancers/profile',

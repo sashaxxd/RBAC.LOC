@@ -9,6 +9,7 @@ namespace app\controllers;
 
 
 use app\models\Freelancers;
+use app\models\Message;
 use mdm\admin\models\User;
 use Yii;
 use yii\web\NotFoundHttpException;
@@ -28,6 +29,19 @@ class FreelancersController extends AppController
     public function actionView($id)
     {
 
+        $message = new Message();
+        $message->user = Yii::$app->user->identity->username;
+//        Debug(Yii::$app->request->get('id'));
+        $message->parent_id = Yii::$app->request->get('id');
+        if ($message->load(Yii::$app->request->post()) && $message->save()) {
+            if(Yii::$app->getRequest()->getIsPjax()) {  //очистка формы после Pjax
+                $message = new Message();
+            }
+             $res = "Cообщение отправлено";
+
+        }
+
+
         $freelancer = Freelancers::findOne($id);
         if(empty($freelancer )){
             throw new \yii\web\HttpException(404, 'Такой страницы не существует');
@@ -35,6 +49,8 @@ class FreelancersController extends AppController
         $this->layout = 'cabinet';
         return $this->render('view',[
                 'freelancer' => $freelancer,
+                'message' =>  $message,
+                'res' =>  $res,
             ]
         );
     }
